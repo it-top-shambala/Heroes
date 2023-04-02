@@ -1,0 +1,68 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Hero {
+- _name : string
+
+# health : int
+# damage : int
+
+# Hero(name : string)
+
++ GetName() : string
++ GetHealth() : int
++ SetHealth(health : int) : void
++ GetDamage() : int
++ Attack(enemy : Hero) : void
+}
+
+Hero <|-- Persian
+abstract class Persian {
+- {static} HEALTH : int
+- {static} DAMAGE : int
+
+# Persian(name : string)
+}
+
+Hero <|-- Roman
+abstract class Roman {
+- {static} HEALTH : int
+- {static} DAMAGE : int
+
+# Roman(name : string)
+}
+
+interface IMagician {
++ {abstract} MagicAttack(enemy : Hero) : void
+}
+
+interface IWarrior {
+}
+
+Persian <|-- PersianMagician
+IMagician <|.. PersianMagician
+class PersianMagician {
++ MagicAttack(enemy : Hero) : void
++ PersianMagician(name : string)
+}
+
+Persian <|-- PersianWarrior
+IWarrior <|.. PersianWarrior
+class PersianWarrior {
++ PersianWarrior(name : string)
+}
+
+Roman <|-- RomanMagician
+IMagician <|.. RomanMagician
+class RomanMagician {
++ MagicAttack(enemy : Hero) : void
++ RomanMagician(name : string)
+}
+
+Roman <|-- RomanWarrior
+IWarrior <|.. RomanWarrior
+class RomanWarrior {
++ RomanWarrior(name : string)
+}
+
+@enduml
